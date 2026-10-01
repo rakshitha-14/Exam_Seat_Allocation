@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - ExamSeat{% endblock %}
+
+{% block heading %}Dashboard{% endblock %}
+
+{% block subtitle %}
+Overview of your examination seating system
+{% endblock %}
+
+
+{% block content %}
+
+<div class="welcome-card">
+
+    <div>
+        <span class="welcome-label">EXAM MANAGEMENT</span>
+
+        <h2>Welcome to ExamSeat</h2>
+
+        <p>
+            Manage students, examination rooms and seat allocations
+            from one simple dashboard.
+        </p>
+
+        <a href="{{ url_for('allocation_page') }}"
+           class="primary-button">
+            <i class="fa-solid fa-shuffle"></i>
+            Allocate Seats
+        </a>
+    </div>
+
+    <div class="welcome-icon">
+        <i class="fa-solid fa-chair"></i>
+    </div>
+
+</div>
+
+
+<div class="stats-grid">
+
+    <a href="{{ url_for('students_page') }}" class="stat-card">
+
+        <div class="stat-icon blue">
+            <i class="fa-solid fa-user-graduate"></i>
+        </div>
+
+        <div class="stat-content">
+            <span>Total Students</span>
+            <strong id="totalStudents">0</strong>
+            <small>Registered students</small>
+        </div>
+
+        <i class="fa-solid fa-arrow-right card-arrow"></i>
+
+    </a>
+
+
+    <a href="{{ url_for('rooms_page') }}" class="stat-card">
+
+        <div class="stat-icon purple">
+            <i class="fa-solid fa-door-open"></i>
+        </div>
+
+        <div class="stat-content">
+            <span>Total Rooms</span>
+            <strong id="totalRooms">0</strong>
+            <small>Configured rooms</small>
+        </div>
+
+        <i class="fa-solid fa-arrow-right card-arrow"></i>
+
+    </a>
+
+
+    <a href="{{ url_for('rooms_page') }}" class="stat-card">
+
+        <div class="stat-icon orange">
+            <i class="fa-solid fa-chair"></i>
+        </div>
+
+        <div class="stat-content">
+            <span>Total Seats</span>
+            <strong id="totalSeats">0</strong>
+            <small>Available capacity</small>
+        </div>
+
+        <i class="fa-solid fa-arrow-right card-arrow"></i>
+
+    </a>
+
+
+    <a href="{{ url_for('results_page') }}" class="stat-card">
+
+        <div class="stat-icon green">
+            <i class="fa-solid fa-circle-check"></i>
+        </div>
+
+        <div class="stat-content">
+            <span>Allocated</span>
+            <strong id="allocatedStudents">0</strong>
+            <small>Seats assigned</small>
+        </div>
+
+        <i class="fa-solid fa-arrow-right card-arrow"></i>
+
+    </a>
+
+</div>
+
+
+<div class="dashboard-grid">
+
+    <div class="panel">
+
+        <div class="panel-header">
+
+            <div>
+                <h3>Quick Actions</h3>
+                <p>Common exam management tasks</p>
+            </div>
+
+        </div>
+
+        <div class="quick-actions">
+
+            <a href="{{ url_for('students_page') }}"
+               class="quick-action">
+
+                <div class="quick-icon blue">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+
+                <div>
+                    <strong>Add Students</strong>
+                    <span>Register students</span>
+                </div>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </a>
+
+
+            <a href="{{ url_for('rooms_page') }}"
+               class="quick-action">
+
+                <div class="quick-icon purple">
+                    <i class="fa-solid fa-building"></i>
+                </div>
+
+                <div>
+                    <strong>Configure Rooms</strong>
+                    <span>Set room capacity</span>
+                </div>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </a>
+
+
+            <a href="{{ url_for('allocation_page') }}"
+               class="quick-action">
+
+                <div class="quick-icon orange">
+                    <i class="fa-solid fa-shuffle"></i>
+                </div>
+
+                <div>
+                    <strong>Allocate Seats</strong>
+                    <span>Run allocation algorithm</span>
+                </div>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </a>
+
+
+            <a href="{{ url_for('search_page') }}"
+               class="quick-action">
+
+                <div class="quick-icon green">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <div>
+                    <strong>Find Student</strong>
+                    <span>Search seat details</span>
+                </div>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="panel-header">
+
+            <div>
+                <h3>System Information</h3>
+                <p>Current system status</p>
+            </div>
+
+        </div>
+
+        <div class="info-list">
+
+            <div class="info-item">
+                <span>Database</span>
+                <strong class="online-text">
+                    <span class="status-dot"></span>
+                    Firebase
+                </strong>
+            </div>
+
+            <div class="info-item">
+                <span>Backend</span>
+                <strong>Python Flask</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Allocation</span>
+                <strong>DSA Based</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Status</span>
+                <strong class="online-text">Operational</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+    loadDashboardStats();
+</script>
+
+{% endblock %}

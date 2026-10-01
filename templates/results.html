@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Results - ExamSeat{% endblock %}
+
+{% block heading %}Allocation Results{% endblock %}
+
+{% block subtitle %}
+View all generated examination seat assignments
+{% endblock %}
+
+
+{% block content %}
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <div>
+            <h3>Final Seat Allocation</h3>
+            <p id="resultsCount">Loading allocation results...</p>
+        </div>
+
+        <div class="header-actions">
+
+            <button
+                class="secondary-button"
+                onclick="loadResults()">
+
+                <i class="fa-solid fa-rotate"></i>
+
+                Refresh
+
+            </button>
+
+            <button
+                class="danger-button"
+                onclick="clearData()">
+
+                <i class="fa-solid fa-trash"></i>
+
+                Clear Data
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Year</th>
+                    <th>Room</th>
+                    <th>Seat</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="resultsTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+    loadResults();
+</script>
+
+{% endblock %}

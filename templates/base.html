@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}ExamSeat{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="fa-solid fa-chair"></i>
+            </div>
+
+            <div>
+                <h2>ExamSeat</h2>
+                <span>Allocation System</span>
+            </div>
+        </div>
+
+        <nav class="nav">
+
+            <a href="{{ url_for('dashboard') }}"
+               class="nav-item {% if request.endpoint == 'dashboard' %}active{% endif %}">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="{{ url_for('students_page') }}"
+               class="nav-item {% if request.endpoint == 'students_page' %}active{% endif %}">
+                <i class="fa-solid fa-user-graduate"></i>
+                <span>Students</span>
+            </a>
+
+            <a href="{{ url_for('rooms_page') }}"
+               class="nav-item {% if request.endpoint == 'rooms_page' %}active{% endif %}">
+                <i class="fa-solid fa-door-open"></i>
+                <span>Rooms</span>
+            </a>
+
+            <a href="{{ url_for('allocation_page') }}"
+               class="nav-item {% if request.endpoint == 'allocation_page' %}active{% endif %}">
+                <i class="fa-solid fa-shuffle"></i>
+                <span>Seat Allocation</span>
+            </a>
+
+            <a href="{{ url_for('search_page') }}"
+               class="nav-item {% if request.endpoint == 'search_page' %}active{% endif %}">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Search Seat</span>
+            </a>
+
+            <a href="{{ url_for('results_page') }}"
+               class="nav-item {% if request.endpoint == 'results_page' %}active{% endif %}">
+                <i class="fa-solid fa-table-list"></i>
+                <span>Results</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>System Online</strong>
+                    <small>Firebase connected</small>
+                </div>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <button class="menu-button" onclick="toggleSidebar()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <div class="page-heading">
+                <h1>{% block heading %}Dashboard{% endblock %}</h1>
+                <p>{% block subtitle %}Exam seat allocation management{% endblock %}</p>
+            </div>
+
+            <div class="topbar-right">
+                <div class="admin-profile">
+                    <div class="admin-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div class="admin-info">
+                        <strong>Administrator</strong>
+                        <span>Exam Management</span>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+
+        <section class="content">
+
+            {% block content %}
+            {% endblock %}
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<div id="toast" class="toast"></div>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+{% block scripts %}
+{% endblock %}
+
+</body>
+</html>

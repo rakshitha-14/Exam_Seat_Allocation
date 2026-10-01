@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block title %}Students - ExamSeat{% endblock %}
+
+{% block heading %}Students{% endblock %}
+
+{% block subtitle %}
+Register and manage examination students
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page-grid">
+
+    <div class="panel form-panel">
+
+        <div class="panel-header">
+
+            <div>
+                <h3>Add Student</h3>
+                <p>Register a new student</p>
+            </div>
+
+            <div class="panel-icon blue">
+                <i class="fa-solid fa-user-plus"></i>
+            </div>
+
+        </div>
+
+
+        <form id="studentForm">
+
+            <div class="form-group">
+
+                <label>Student ID</label>
+
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-id-card"></i>
+
+                    <input
+                        type="text"
+                        id="studentId"
+                        placeholder="Example: CS001"
+                        required>
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Student Name</label>
+
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-user"></i>
+
+                    <input
+                        type="text"
+                        id="studentName"
+                        placeholder="Enter student name"
+                        required>
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Department</label>
+
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-building-columns"></i>
+
+                    <select id="department" required>
+
+                        <option value="">Select department</option>
+
+                        <option value="CSE">CSE</option>
+                        <option value="ISE">ISE</option>
+                        <option value="ECE">ECE</option>
+                        <option value="EEE">EEE</option>
+                        <option value="ME">ME</option>
+                        <option value="CIVIL">CIVIL</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Year</label>
+
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-calendar"></i>
+
+                    <select id="year" required>
+
+                        <option value="">Select year</option>
+
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <button type="submit" class="primary-button full-width">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Add Student
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="panel">
+
+        <div class="panel-header">
+
+            <div>
+                <h3>Registered Students</h3>
+                <p id="studentCountText">Loading students...</p>
+            </div>
+
+            <button class="secondary-button"
+                    onclick="loadStudents()">
+
+                <i class="fa-solid fa-rotate"></i>
+
+                Refresh
+
+            </button>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Year</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="studentTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+    document
+        .getElementById("studentForm")
+        .addEventListener("submit", addStudent);
+
+    loadStudents();
+</script>
+
+{% endblock %}

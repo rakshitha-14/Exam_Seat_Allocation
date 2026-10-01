@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Search Seat - ExamSeat{% endblock %}
+
+{% block heading %}Search Student{% endblock %}
+
+{% block subtitle %}
+Find a student's examination room and seat
+{% endblock %}
+
+
+{% block content %}
+
+<div class="center-content">
+
+    <div class="panel search-panel">
+
+        <div class="search-icon-large">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+
+        <h2>Find Student Seat</h2>
+
+        <p>
+            Enter the student ID to find the assigned
+            examination room and seat.
+        </p>
+
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchStudentId"
+                placeholder="Enter Student ID">
+
+            <button
+                class="primary-button"
+                onclick="searchStudent()">
+
+                <i class="fa-solid fa-search"></i>
+
+                Search
+
+            </button>
+
+        </div>
+
+
+        <div id="searchResult"></div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+    document
+        .getElementById("searchStudentId")
+        .addEventListener("keydown", function(event) {
+
+            if (event.key === "Enter") {
+                searchStudent();
+            }
+
+        });
+</script>
+
+{% endblock %}

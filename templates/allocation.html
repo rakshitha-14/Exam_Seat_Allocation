@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}Seat Allocation - ExamSeat{% endblock %}
+
+{% block heading %}Seat Allocation{% endblock %}
+
+{% block subtitle %}
+Generate examination seating using the DSA allocation algorithm
+{% endblock %}
+
+
+{% block content %}
+
+<div class="allocation-top">
+
+    <div class="panel allocation-info">
+
+        <div class="panel-header">
+
+            <div>
+                <h3>Allocation Setup</h3>
+                <p>Review your current configuration</p>
+            </div>
+
+            <div class="panel-icon orange">
+                <i class="fa-solid fa-shuffle"></i>
+            </div>
+
+        </div>
+
+
+        <div class="allocation-stats">
+
+            <div>
+                <span>Rooms</span>
+                <strong id="allocationRooms">0</strong>
+            </div>
+
+            <div>
+                <span>Seats / Room</span>
+                <strong id="allocationSeats">0</strong>
+            </div>
+
+            <div>
+                <span>Total Capacity</span>
+                <strong id="allocationCapacity">0</strong>
+            </div>
+
+            <div>
+                <span>Students</span>
+                <strong id="allocationStudents">0</strong>
+            </div>
+
+        </div>
+
+
+        <button
+            class="primary-button allocation-button"
+            onclick="runAllocation()">
+
+            <i class="fa-solid fa-shuffle"></i>
+
+            Generate Seat Allocation
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <div>
+            <h3>Allocation Preview</h3>
+            <p id="allocationMessage">
+                Generate allocation to view assigned seats.
+            </p>
+        </div>
+
+        <a href="{{ url_for('results_page') }}"
+           class="secondary-button">
+
+            <i class="fa-solid fa-table-list"></i>
+
+            View Results
+
+        </a>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Year</th>
+                    <th>Room</th>
+                    <th>Seat</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="allocationTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+    loadAllocationSetup();
+</script>
+
+{% endblock %}

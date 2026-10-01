@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Rooms - ExamSeat{% endblock %}
+
+{% block heading %}Room Management{% endblock %}
+
+{% block subtitle %}
+Configure examination rooms and seating capacity
+{% endblock %}
+
+
+{% block content %}
+
+<div class="center-content">
+
+    <div class="panel room-panel">
+
+        <div class="room-header">
+
+            <div class="room-main-icon">
+                <i class="fa-solid fa-door-open"></i>
+            </div>
+
+            <div>
+                <h2>Exam Room Configuration</h2>
+
+                <p>
+                    Set the number of rooms and seats available
+                    in each room.
+                </p>
+            </div>
+
+        </div>
+
+
+        <form id="roomForm" class="room-form">
+
+            <div class="form-group">
+
+                <label>Number of Rooms</label>
+
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-building"></i>
+
+                    <input
+                        type="number"
+                        id="rooms"
+                        min="1"
+                        placeholder="Example: 5"
+                        required>
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Seats Per Room</label>
+
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-chair"></i>
+
+                    <input
+                        type="number"
+                        id="seatsPerRoom"
+                        min="1"
+                        placeholder="Example: 30"
+                        required>
+                </div>
+
+            </div>
+
+
+            <div class="capacity-preview">
+
+                <div>
+                    <span>Total Capacity</span>
+                    <strong id="capacityValue">0</strong>
+                </div>
+
+                <i class="fa-solid fa-calculator"></i>
+
+            </div>
+
+
+            <button type="submit" class="primary-button full-width">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Save Room Configuration
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+    loadRoomSettings();
+
+    document
+        .getElementById("roomForm")
+        .addEventListener("submit", saveRoomSettings);
+
+    document
+        .getElementById("rooms")
+        .addEventListener("input", calculateCapacity);
+
+    document
+        .getElementById("seatsPerRoom")
+        .addEventListener("input", calculateCapacity);
+</script>
+
+{% endblock %}
