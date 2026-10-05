@@ -1,0 +1,29 @@
+type Exam @table {
+  name: String!
+  startTime: Timestamp!
+  endTime: Timestamp!
+  description: String
+}
+
+type Room @table {
+  roomNumber: String!
+  totalCapacity: Int!
+  buildingName: String
+}
+
+type Student @table {
+  studentId: String!
+  fullName: String!
+  email: String!
+}
+
+type Seat @table {
+  seatLabel: String!
+  room: Room!
+}
+
+type Allocation @table {
+  exam: Exam!
+  student: Student!
+  seat: Seat!
+}

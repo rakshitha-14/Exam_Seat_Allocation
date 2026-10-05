@@ -1,0 +1,104 @@
+# Operations for Exam
+mutation InsertExam($name: String!, $start: Timestamp!, $end: Timestamp!) @auth(level: USER) {
+  exam_insert(data: { name: $name, startTime: $start, endTime: $end })
+}
+
+mutation UpdateExam($id: UUID!, $name: String) @auth(level: USER) {
+  exam_update(id: $id, data: { name: $name })
+}
+
+mutation DeleteExam($id: UUID!) @auth(level: USER) {
+  exam_delete(id: $id)
+}
+
+query GetExam($id: UUID!) @auth(level: PUBLIC, insecureReason: "Exams are public information for students") {
+  exam(id: $id) { name startTime endTime description }
+}
+
+query ListExams @auth(level: PUBLIC, insecureReason: "Exams are public information for students") {
+  exams { name startTime endTime }
+}
+
+# Operations for Room
+mutation InsertRoom($num: String!, $cap: Int!) @auth(level: USER) {
+  room_insert(data: { roomNumber: $num, totalCapacity: $cap })
+}
+
+mutation UpdateRoom($id: UUID!, $cap: Int) @auth(level: USER) {
+  room_update(id: $id, data: { totalCapacity: $cap })
+}
+
+mutation DeleteRoom($id: UUID!) @auth(level: USER) {
+  room_delete(id: $id)
+}
+
+query GetRoom($id: UUID!) @auth(level: PUBLIC, insecureReason: "Room details are public information") {
+  room(id: $id) { roomNumber totalCapacity buildingName }
+}
+
+query ListRooms @auth(level: PUBLIC, insecureReason: "Room details are public information") {
+  rooms { roomNumber totalCapacity buildingName }
+}
+
+# Operations for Student
+mutation InsertStudent($id: String!, $name: String!, $email: String!) @auth(level: USER) {
+  student_insert(data: { studentId: $id, fullName: $name, email: $email })
+}
+
+mutation UpdateStudent($id: UUID!, $name: String) @auth(level: USER) {
+  student_update(id: $id, data: { fullName: $name })
+}
+
+mutation DeleteStudent($id: UUID!) @auth(level: USER) {
+  student_delete(id: $id)
+}
+
+query GetStudent($id: UUID!) @auth(level: USER) {
+  student(id: $id) { studentId fullName email }
+}
+
+query ListStudents @auth(level: USER) {
+  students { studentId fullName email }
+}
+
+# Operations for Seat
+mutation InsertSeat($label: String!, $roomId: UUID!) @auth(level: USER) {
+  seat_insert(data: { seatLabel: $label, roomId: $roomId })
+}
+
+mutation UpdateSeat($id: UUID!, $label: String) @auth(level: USER) {
+  seat_update(id: $id, data: { seatLabel: $label })
+}
+
+mutation DeleteSeat($id: UUID!) @auth(level: USER) {
+  seat_delete(id: $id)
+}
+
+query GetSeat($id: UUID!) @auth(level: PUBLIC, insecureReason: "Seating charts are public") {
+  seat(id: $id) { seatLabel room { roomNumber } }
+}
+
+query ListSeats @auth(level: PUBLIC, insecureReason: "Seating charts are public") {
+  seats { seatLabel room { roomNumber } }
+}
+
+# Operations for Allocation
+mutation InsertAllocation($examId: UUID!, $studentId: UUID!, $seatId: UUID!) @auth(level: USER) {
+  allocation_insert(data: { examId: $examId, studentId: $studentId, seatId: $seatId })
+}
+
+mutation UpdateAllocation($id: UUID!, $seatId: UUID!) @auth(level: USER) {
+  allocation_update(id: $id, data: { seatId: $seatId })
+}
+
+mutation DeleteAllocation($id: UUID!) @auth(level: USER) {
+  allocation_delete(id: $id)
+}
+
+query GetAllocation($id: UUID!) @auth(level: USER) {
+  allocation(id: $id) { exam { name } student { fullName } seat { seatLabel } }
+}
+
+query ListAllocations @auth(level: USER) {
+  allocations { exam { name } student { fullName } seat { seatLabel } }
+}

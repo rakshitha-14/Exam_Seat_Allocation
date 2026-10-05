@@ -1,0 +1,27 @@
+mutation CreateSeedData @transaction {
+  exam_insertMany(data: [
+    { name: "Final Exam", startTime: "2024-05-20T09:00:00Z", endTime: "2024-05-20T12:00:00Z", description: "Mathematics Final" },
+    { name: "Midterm", startTime: "2024-04-10T14:00:00Z", endTime: "2024-04-10T16:00:00Z", description: "History Midterm" },
+    { name: "Quiz 1", startTime: "2024-03-01T10:00:00Z", endTime: "2024-03-01T10:30:00Z", description: "Physics Quiz" }
+  ])
+  student_insertMany(data: [
+    { studentId: "S001", fullName: "Alice Johnson", email: "alice@example.com" },
+    { studentId: "S002", fullName: "Bob Smith", email: "bob@example.com" },
+    { studentId: "S003", fullName: "Charlie Davis", email: "charlie@example.com" }
+  ])
+  room_insertMany(data: [
+    { roomNumber: "101", totalCapacity: 30, buildingName: "Science Hall" },
+    { roomNumber: "202", totalCapacity: 50, buildingName: "Liberal Arts" },
+    { roomNumber: "303", totalCapacity: 20, buildingName: "Main Library" }
+  ])
+  seat_insertMany(data: [
+    { seatLabel: "A1", room: { id: "00000000-0000-0000-0000-000000000001" } },
+    { seatLabel: "A2", room: { id: "00000000-0000-0000-0000-000000000001" } },
+    { seatLabel: "B1", room: { id: "00000000-0000-0000-0000-000000000002" } }
+  ])
+  allocation_insertMany(data: [
+    { exam: { id: "00000000-0000-0000-0000-000000000001" }, student: { id: "00000000-0000-0000-0000-000000000001" }, seat: { id: "00000000-0000-0000-0000-000000000001" } },
+    { exam: { id: "00000000-0000-0000-0000-000000000002" }, student: { id: "00000000-0000-0000-0000-000000000002" }, seat: { id: "00000000-0000-0000-0000-000000000002" } },
+    { exam: { id: "00000000-0000-0000-0000-000000000003" }, student: { id: "00000000-0000-0000-0000-000000000003" }, seat: { id: "00000000-0000-0000-0000-000000000003" } }
+  ])
+}
