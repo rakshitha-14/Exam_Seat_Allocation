@@ -90,3 +90,5 @@ Generate Allocation
 Store in Firebase
      ↓
 Display Results
+
+Live prototype : https://exam-seat-allocation-e80g.onrender.com
